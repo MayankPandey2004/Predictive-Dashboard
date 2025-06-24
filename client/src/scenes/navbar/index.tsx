@@ -23,7 +23,7 @@ const Navbar = () => {
             <FlexBetween gap="0.75rem">
                 <PixIcon sx={{fontSize: "28px"}}/>
                 <Typography variant='h4' fontSize="16px">
-                    FinSight
+                    FinSight <span style={{color: palette.grey[800], fontSize: "12px"}}>-Mayank Pandey</span>
                 </Typography>
             </FlexBetween>
 
