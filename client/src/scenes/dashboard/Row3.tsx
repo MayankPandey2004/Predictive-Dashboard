@@ -147,7 +147,7 @@ const Row3 = () => {
                 <FlexBetween gap="0.5rem" p="0 1rem" textAlign="center">
                     {pieChartData?.map((data, i) => (
                         <Box key={`${data[0].name}-${i}`}>
-                            <PieChart width={110} height={90}>
+                            <PieChart width={100} height={90}>
                                 <Pie
                                     stroke='none'
                                     data={data}
