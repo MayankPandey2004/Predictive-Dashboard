@@ -32,7 +32,7 @@ app.use("/product", productRoutes);
 app.use("/transaction", transactionRoutes);
 
 /* RELOAD TO AVOID SPIN DOWN */
-const url = `https://predictive-dashboard-server.onrender.com/`;
+const url = `https://predictive-dashboard-server.onrender.com/kpi/kpis/`;
 const interval = 30000;
 
 function reloadWebsite() {
