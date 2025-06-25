@@ -30,6 +30,23 @@ app.use("/kpi", kpiRoutes);
 app.use("/product", productRoutes);
 app.use("/transaction", transactionRoutes);
 
+/* RELOAD TO AVOID SPIN DOWN */
+const url = `https://predictive-dashboard-server.onrender.com/`;
+const interval = 30000;
+
+function reloadWebsite() {
+    axios
+        .get(url)
+        .then((response) => {
+            console.log("website reloded");
+        })
+        .catch((error) => {
+            console.error(`Error : ${error.message}`);
+        });
+}
+
+setInterval(reloadWebsite, interval);
+
 /* MONGOOSE */
 const PORT = process.env.PORT || 9000;
 mongoose.connect(process.env.MONGO_URL).then(async () => {
@@ -40,6 +57,6 @@ mongoose.connect(process.env.MONGO_URL).then(async () => {
     // KPI.insertMany(kpis); 
     // Product.insertMany(products);
     // Transaction.insertMany(transactions);
-    
+
 }).catch((error) => console.log(`${error} did not connect`));
 
