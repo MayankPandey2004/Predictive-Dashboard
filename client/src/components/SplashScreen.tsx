@@ -80,7 +80,7 @@ const SplashScreen = () => {
         variant="subtitle1"
         sx={{
           fontStyle: "italic",
-          color: "#ff8955",
+          color: "#64ffda",
           mt: 1,
           animation: `${fadeIn} 1s ease 1s forwards`,
           opacity: 0,
