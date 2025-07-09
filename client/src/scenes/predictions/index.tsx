@@ -67,7 +67,7 @@ return (
                 <Tooltip />
                 <Legend verticalAlign='top' />
                 <Line type="monotone" dataKey="Actual Revenue" stroke={palette.primary.main} strokeWidth={0} dot={{ strokeWidth: 5 }} />
-                <Line type="monotone" dataKey="Regression Line" stroke="#8884d8" dot={false} />
+                <Line type="monotone" dataKey="Regression Line" stroke="#a55658" dot={false} />
                 {isPredictions && (
                     <Line strokeDasharray="5 5" type="monotone" dataKey="Predicted Revenue" stroke={palette.secondary[500]}/>
                 )}
