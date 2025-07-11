@@ -3,7 +3,7 @@ import type { GetKpisResponse, GetProductsResponse, GetTransactionsResponse } fr
 
 
 export const api = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL}),
+    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
     reducerPath: "main",
     tagTypes: ["Kpis", "Products", "Transactions"],
     endpoints: (build) => ({
@@ -21,7 +21,7 @@ export const api = createApi({
         }),
         suggestPrice: build.mutation<{ suggested_price: number; predicted_sales: number; expected_revenue: number }, { price: number; expense: number; sales_volume: number }[]>({
             query: (body) => ({
-                url: "http://127.0.0.1:8000/suggest-price",
+                url: import.meta.env.ML_BASE_URL,
                 method: "POST",
                 body,
             }),
