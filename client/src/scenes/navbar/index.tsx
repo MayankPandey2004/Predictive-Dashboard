@@ -13,6 +13,8 @@ const Navbar = () => {
             setSelected("dashboard");
         } else if (location.pathname === "/predictions") {
             setSelected("predictions");
+        } else if (location.pathname === "/pricing-ai") {
+            setSelected("pricing-ai");
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname]);
@@ -53,6 +55,19 @@ const Navbar = () => {
                         Predictions
                     </Link>
                 </Box>
+                <Box sx={{"&:hover": {color: palette.primary[100]}}}>
+                    <Link 
+                    to="/pricing-ai"
+                    onClick={() => setSelected("pricing-ai")}
+                    style={{
+                        color: selected === "pricing-ai" ? "inherit" : palette.grey[700],
+                        textDecoration: "inherit"
+                    }}
+                    >
+                        Pricing AI
+                    </Link>
+                </Box>
+
             </FlexBetween>
         </FlexBetween>
     )

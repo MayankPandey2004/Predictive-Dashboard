@@ -18,12 +18,20 @@ export const api = createApi({
         getTransactions: build.query<Array<GetTransactionsResponse>, void>({
             query: () => "transaction/transactions/",
             providesTags: ["Transactions"]
-        })
+        }),
+        suggestPrice: build.mutation<{ suggested_price: number; predicted_sales: number; expected_revenue: number }, { price: number; expense: number; sales_volume: number }[]>({
+            query: (body) => ({
+                url: "http://127.0.0.1:8000/suggest-price",
+                method: "POST",
+                body,
+            }),
+        }),
     })
 })
 
 export const {
     useGetKpisQuery,
     useGetProductsQuery,
-    useGetTransactionsQuery
+    useGetTransactionsQuery,
+    useSuggestPriceMutation
 } = api; 

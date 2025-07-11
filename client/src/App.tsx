@@ -6,9 +6,14 @@ import Navbar from "./scenes/navbar";
 import Dashboard from "./scenes/dashboard";
 import Predictions from "./scenes/predictions"
 import SplashScreen from "./components/SplashScreen";
+import PricingAI from "./scenes/pricing-ai/PricingAI";
+
+import { useGetProductsQuery } from "./state/api";
 
 function App() {
-  const theme = useMemo(() => createTheme(themeSettings), [])
+  const theme = useMemo(() => createTheme(themeSettings), []);
+  const { data: productsFromApi} = useGetProductsQuery();
+
   return (
     <div className="app">
       <BrowserRouter>
@@ -20,12 +25,14 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/predictions" element={<Predictions />} />
+              <Route path="/pricing-ai" element={<PricingAI products={productsFromApi || []} />} />
             </Routes>
           </Box>
         </ThemeProvider>
       </BrowserRouter>
     </div>
-  )
+  );
 }
+
 
 export default App
