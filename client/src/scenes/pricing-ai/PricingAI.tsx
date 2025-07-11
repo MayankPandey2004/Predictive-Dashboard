@@ -1,6 +1,6 @@
 import { Box, Typography, CircularProgress, useTheme } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
-import { useSuggestPriceMutation } from "../../state/api";
+import { useSuggestPriceMutation } from "../../state/mlApi";
 import { useEffect, useState } from "react";
 import type { GetProductsResponse } from "../../state/types";
 
