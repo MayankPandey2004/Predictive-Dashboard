@@ -19,6 +19,13 @@ export const api = createApi({
             query: () => "transaction/transactions/",
             providesTags: ["Transactions"]
         }),
+        suggestPrice: build.mutation<{ suggested_price: number; predicted_sales: number; expected_revenue: number }, { price: number; expense: number; sales_volume: number }[]>({
+            query: (body) => ({
+                url: import.meta.env.ML_BASE_URL,
+                method: "POST",
+                body,
+            }),
+        }),
     })
 })
 
@@ -26,4 +33,5 @@ export const {
     useGetKpisQuery,
     useGetProductsQuery,
     useGetTransactionsQuery,
+    useSuggestPriceMutation
 } = api; 
