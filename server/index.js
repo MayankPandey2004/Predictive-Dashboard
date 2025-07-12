@@ -33,6 +33,7 @@ app.use("/transaction", transactionRoutes);
 
 /* RELOAD TO AVOID SPIN DOWN */
 const url = `https://predictive-dashboard-server.onrender.com/kpi/kpis/`;
+const url2 = 'https://your-render-url.onrender.com/suggest-price';
 const interval = 30000;
 
 function reloadWebsite() {
@@ -44,6 +45,15 @@ function reloadWebsite() {
         .catch((error) => {
             console.error(`Error : ${error.message}`);
         });
+    axios
+        .post(url2)
+        .then((response) => {
+            console.log("website reloded");
+        })
+        .catch((error) => {
+            console.error(`Error : ${error.message}`);
+        });
+
 }
 
 setInterval(reloadWebsite, interval);
