@@ -40,20 +40,22 @@ function reloadWebsite() {
     axios
         .get(url)
         .then((response) => {
-            console.log("website reloded");
+            console.log("Website reloaded (GET)");
         })
         .catch((error) => {
-            console.error(`Error : ${error.message}`);
-        });
-    axios
-        .post(url2)
-        .then((response) => {
-            console.log("website reloded");
-        })
-        .catch((error) => {
-            console.error(`Error : ${error.message}`);
+            console.error(`GET Error: ${error.message}`);
         });
 
+    axios
+        .post(url2, [
+            { price: 100, expense: 80, sales_volume: 50 }
+        ])
+        .then((response) => {
+            console.log("Website reloaded (POST)");
+        })
+        .catch((error) => {
+            console.error(`POST Error: ${error.message}`);
+        });
 }
 
 setInterval(reloadWebsite, interval);
