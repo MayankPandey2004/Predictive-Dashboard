@@ -5,9 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
+import threading
+import time
+import requests
+import os
 
 app = FastAPI()
 
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,6 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Data Models
 class Product(BaseModel):
     price: float
     expense: float
@@ -26,10 +32,11 @@ class Suggestion(BaseModel):
     predicted_sales: int
     expected_revenue: float
 
+# Route for price suggestion
 @app.post("/suggest-price", response_model=List[Suggestion])
 def suggest_price(products: List[Product]):
     suggestions = []
-    
+
     for product in products:
         df = pd.DataFrame({
             "price": [product.price - 5, product.price, product.price + 5],
@@ -59,3 +66,25 @@ def suggest_price(products: List[Product]):
         })
 
     return suggestions
+
+# ---------- Keep-Alive Mechanism ----------
+def keep_alive():
+    url = os.environ.get("KEEP_ALIVE_URL", "https://your-render-url.onrender.com/suggest-price")
+    interval = 30  # seconds
+
+    while True:
+        try:
+            # Just pinging the URL with a dummy payload to keep it alive
+            response = requests.post(
+                url,
+                json=[{"price": 100, "expense": 80, "sales_volume": 50}]
+            )
+            print(f"[Keep Alive] Pinged: {url}, Status: {response.status_code}")
+        except Exception as e:
+            print(f"[Keep Alive] Error: {e}")
+        time.sleep(interval)
+
+# Start the keep-alive thread when the app starts
+@app.on_event("startup")
+def startup_event():
+    threading.Thread(target=keep_alive, daemon=True).start()
