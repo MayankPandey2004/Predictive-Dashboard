@@ -66,25 +66,3 @@ def suggest_price(products: List[Product]):
         })
 
     return suggestions
-
-# ---------- Keep-Alive Mechanism ----------
-def keep_alive():
-    url = os.environ.get("KEEP_ALIVE_URL", "https://your-render-url.onrender.com/suggest-price")
-    interval = 30  # seconds
-
-    while True:
-        try:
-            # Just pinging the URL with a dummy payload to keep it alive
-            response = requests.post(
-                url,
-                json=[{"price": 100, "expense": 80, "sales_volume": 50}]
-            )
-            print(f"[Keep Alive] Pinged: {url}, Status: {response.status_code}")
-        except Exception as e:
-            print(f"[Keep Alive] Error: {e}")
-        time.sleep(interval)
-
-# Start the keep-alive thread when the app starts
-@app.on_event("startup")
-def startup_event():
-    threading.Thread(target=keep_alive, daemon=True).start()
