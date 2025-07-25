@@ -32,7 +32,7 @@ app.use("/product", productRoutes);
 app.use("/transaction", transactionRoutes);
 
 /* RELOAD TO AVOID SPIN DOWN */
-const url = `https://predictive-dashboard-server.onrender.com/kpi/kpis/`;
+const url = `https://predictive-dashboard-production.up.railway.app/kpi/kpis`;
 const url2 = 'https://predictive-dashboard-ml.onrender.com/suggest-price';
 const interval = 30000;
 
