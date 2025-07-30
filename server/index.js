@@ -33,7 +33,7 @@ app.use("/transaction", transactionRoutes);
 
 /* RELOAD TO AVOID SPIN DOWN */
 const url = `https://predictive-dashboard-6il1.onrender.com/kpi/kpis`;
-const url2 = 'https://predictive-dashboard-ml.onrender.com/suggest-price';
+const url2 = 'https://predictive-dashboard-ml-i4go.onrender.com/suggest-price';
 const interval = 30000;
 
 function reloadWebsite() {
