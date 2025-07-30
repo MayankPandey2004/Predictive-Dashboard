@@ -32,33 +32,33 @@ app.use("/product", productRoutes);
 app.use("/transaction", transactionRoutes);
 
 /* RELOAD TO AVOID SPIN DOWN */
-// const url = `https://predictive-dashboard-production.up.railway.app/kpi/kpis`;
-// const url2 = 'https://predictive-dashboard-ml.onrender.com/suggest-price';
-// const interval = 30000;
+const url = `https://predictive-dashboard-production.up.railway.app/kpi/kpis`;
+const url2 = 'https://predictive-dashboard-ml.onrender.com/suggest-price';
+const interval = 30000;
 
-// function reloadWebsite() {
-//     axios
-//         .get(url)
-//         .then((response) => {
-//             console.log("Website reloaded (GET)");
-//         })
-//         .catch((error) => {
-//             console.error(`GET Error: ${error.message}`);
-//         });
+function reloadWebsite() {
+    axios
+        .get(url)
+        .then((response) => {
+            console.log("Website reloaded (GET)");
+        })
+        .catch((error) => {
+            console.error(`GET Error: ${error.message}`);
+        });
 
-//     axios
-//         .post(url2, [
-//             { price: 100, expense: 80, sales_volume: 50 }
-//         ])
-//         .then((response) => {
-//             console.log("Website reloaded (POST)");
-//         })
-//         .catch((error) => {
-//             console.error(`POST Error: ${error.message}`);
-//         });
-// }
+    axios
+        .post(url2, [
+            { price: 100, expense: 80, sales_volume: 50 }
+        ])
+        .then((response) => {
+            console.log("Website reloaded (POST)");
+        })
+        .catch((error) => {
+            console.error(`POST Error: ${error.message}`);
+        });
+}
 
-// setInterval(reloadWebsite, interval);
+setInterval(reloadWebsite, interval);
 
 /* MONGOOSE */
 const PORT = process.env.PORT || 9000;
